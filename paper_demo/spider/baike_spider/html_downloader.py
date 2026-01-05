@@ -5,6 +5,8 @@ class HtmlDownloader(object):
         try:
             if url is None:
                 return None
+            if not url.startswith('http://') and not url.startswith('https://'):
+                raise ValueError("URL must start with http:// or https://")
             response = urllib.request.urlopen(url)
             if response.getcode() != 200:
                 return None
